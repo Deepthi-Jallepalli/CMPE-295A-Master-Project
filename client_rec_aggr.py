@@ -2,10 +2,11 @@ import socket
 import os
 from _thread import *
 import buffer
+import time
 
 def rec_agg_weights():
     HOST = '0.0.0.0'
-    PORT = 2009
+    PORT = 2025
     ThreadCount =0
     
     s = socket.socket()
@@ -14,6 +15,7 @@ def rec_agg_weights():
     print("......Waiting for a connection.....")
 
     def multi_client(connbuf):
+        count = 0
         while True:
             file_name = connbuf.get_utf8()
             if not file_name:
@@ -36,9 +38,18 @@ def rec_agg_weights():
                     print('File incomplete.  Missing',remaining,'bytes.')
                 else:
                     print('File received successfully.')
+                    # count +=1
+                    # if count == 3:
+                    #     break
 
     while True:
         conn, addr = s.accept()
         print("Got a connection from ", addr)
         connbuf = buffer.Buffer(conn)
         multi_client(connbuf)
+        print("Done receiving")
+        # conn.close()
+        time.sleep(15)
+        break
+
+    # conn.close()

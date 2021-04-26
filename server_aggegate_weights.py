@@ -12,7 +12,7 @@ import os
 
 def aggregation():
     print("===========Aggregation==============")
-    total_size = 6634
+    
     w = []
     
     target_dir = '/home/014489241/fl_project/TensorFlowYOLOv3/Clients/'
@@ -31,8 +31,10 @@ def aggregation():
                 if weights1:
                     w.append(weights1)
 
-    clients = [1615, 1725, 1662,1632]
-
+    # clients = [1615, 1725, 1662, 1632]
+    # clients = [1615, 1662, 1632]
+    clients = [1725,1632]
+    total_size = sum(clients)
     new_weights = [np.zeros(param.shape) for param in w[0]]
     for c in range(len(w)):
         for i in range(len(new_weights)):
@@ -40,7 +42,7 @@ def aggregation():
             new_weights[i] += w[c][i] * (clients[c]/total_size
                                 )
     current_weights = new_weights
-    print("aggregated weights:",  current_weights[0][0])
+    # print("aggregated weights:",  current_weights[0][0])
     yolo = Create_Yolo(input_size=YOLO_INPUT_SIZE, CLASSES=TRAIN_CLASSES)
     yolo.set_weights(current_weights)
     yolo.save_weights(f'/home/014489241/fl_project/TensorFlowYOLOv3/server_agg_weights/{TRAIN_MODEL_NAME}')

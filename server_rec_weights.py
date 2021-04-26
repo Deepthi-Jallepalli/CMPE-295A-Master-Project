@@ -5,32 +5,40 @@ import buffer
 import server_aggegate_weights
 import server_send_weights
 import time
-
+import sys
+directory ='/home/014489241/fl_project/TensorFlowYOLOv3'
 HOST = '0.0.0.0'
-PORT = 3005
-
+PORT = 3000
 comm_rounds = 0
-while  comm_rounds < 1:
+while  comm_rounds < 2:
     ThreadCount =0
     
     s = socket.socket()
-    s.bind((HOST, PORT))
+    s.bind(( HOST, PORT))
     s.listen(10)
     print("......Waiting for a connection.....")
     print("=======Executing Server{} communication=======".format(comm_rounds))
     hosts = []
     ports = []
     def multi_client(connbuf,hosts,ports):
+        
+        ip_address = connbuf.get_utf8()
+        port = connbuf.get_utf8()
+        hosts.append(ip_address)
+        ports.append(int(port))
         while True:
+
+            # ip_address = connbuf.get_utf8()
+            # port = connbuf.get_utf8()
             file_name = connbuf.get_utf8()
             if not file_name:
                 break
             clientname = connbuf.get_utf8()
-            ip_address = connbuf.get_utf8()
-            port = connbuf.get_utf8()
-            hosts.append(ip_address)
-            ports.append(int(port))
+            # hosts.append(ip_address)
+            # ports.append(int(port))
+            print(hosts,ports)
             file_name = os.path.join(clientname, file_name)
+            file_name = directory+'/'+file_name
             print('client name:',clientname)
             print('client address and port',ip_address,port)
             print('file name: ', file_name)
@@ -49,7 +57,8 @@ while  comm_rounds < 1:
                     print('File incomplete.  Missing',remaining,'bytes.')
                 else:
                     print('File received successfully.')
-                    
+        # s.close()
+
     while True:
         conn, addr = s.accept()
         print("Got a connection from ", addr)
@@ -57,9 +66,11 @@ while  comm_rounds < 1:
         start_new_thread(multi_client, (connbuf,hosts,ports))
         ThreadCount += 1
         print('Thread Number: ' + str(ThreadCount))
-        if ThreadCount==4:
+        if ThreadCount==2:
             time.sleep(10)
+            conn.close()
             break
+        
 
     print('Starting Aggregation')
     server_aggegate_weights.aggregation()

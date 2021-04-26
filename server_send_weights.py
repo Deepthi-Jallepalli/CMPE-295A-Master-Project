@@ -2,7 +2,6 @@ import socket
 import threading
 import os
 import buffer
-# import train
 
 def send_agg_weights(hosts,ports):
     print("Sending agg weights")
@@ -28,6 +27,6 @@ def send_agg_weights(hosts,ports):
                         sbuf.put_bytes(f.read())
                     print('File Sent')
         
-            s.close()
+        s.close()
         print("File sent for Client")        
             

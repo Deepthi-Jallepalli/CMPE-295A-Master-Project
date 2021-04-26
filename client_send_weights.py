@@ -2,22 +2,25 @@ import socket
 import threading
 import os
 import client_rec_aggr
-
+import time
 import buffer
 import train
+import subprocess
 
-HOST = '172.16.1.210'
-PORT = 3005
 
-ip_addr = '172.16.1.207'
-local_port = '2009'
+HOST = '172.16.1.208'
+PORT = 3000
+
+ip_addr = '172.16.1.204'
+local_port = '2025'
 
 comm_rounds = 0
-while comm_rounds < 1:
+while comm_rounds < 2:
     print("=======Executing Client{} communication=======".format(comm_rounds))
     try:
 
         train.train_client(comm_rounds)
+        # time.sleep(5)
         print("======Training successful============")
 
     except Exception as e:
@@ -29,8 +32,11 @@ while comm_rounds < 1:
     directory = '/home/014489241/fl_project/TensorFlowYOLOv3/checkpoints'
 
     with s:
+
         
         sbuf = buffer.Buffer(s)
+        sbuf.put_utf8(ip_addr)
+        sbuf.put_utf8(local_port)
         for file_name in os.listdir(directory):
             if "index" in file_name or "data" in file_name:
                 print(directory+'/'+file_name)
@@ -39,16 +45,17 @@ while comm_rounds < 1:
 
                 sbuf.put_utf8(clientname)
 
-                sbuf.put_utf8(ip_addr)
+                # sbuf.put_utf8(ip_addr)
 
-                sbuf.put_utf8(local_port)
+                # sbuf.put_utf8(local_port)
                 file_size = os.path.getsize(full_filename)
                 sbuf.put_utf8(str(file_size))
 
                 with open(full_filename, 'rb') as f:
                     sbuf.put_bytes(f.read())
                 print('File Sent')
-        
+        # s.close()    
     
     client_rec_aggr.rec_agg_weights()
     comm_rounds += 1
+    print("comm rounds",comm_rounds)
