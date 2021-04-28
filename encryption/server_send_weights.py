@@ -3,9 +3,9 @@ import threading
 import os
 import buffer
 
-def send_agg_weights(hosts,ports,fernet):
+def send_agg_weights(hosts,ports,fernets):
     print("Sending agg weights")
-    for h,p in zip(hosts,ports):
+    for h,p,f in zip(hosts,ports,fernets):
         print(h,p)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((h, p))
@@ -14,7 +14,7 @@ def send_agg_weights(hosts,ports,fernet):
         with s:
             
             sbuf = buffer.Buffer(s)
-            sbuf.set_fernet(fernet)
+            sbuf.set_fernet(f)
 
             for file_name in os.listdir(directory):
                 if "index" in file_name or "data" in file_name:
