@@ -89,5 +89,5 @@ while  comm_rounds < 2:
 
     print('Starting Aggregation')
     server_aggregate_weights.aggregation()
-    server_send_weights.send_agg_weights(hosts,ports,fernets[0])
+    server_send_weights.send_agg_weights(hosts,ports,fernets)
     comm_rounds +=1
