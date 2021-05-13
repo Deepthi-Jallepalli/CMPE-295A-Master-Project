@@ -3,16 +3,17 @@ import os
 from _thread import *
 import buffer
 import time
+import security_config
 
-def rec_agg_weights():
+def rec_agg_weights(fernet):
     HOST = '0.0.0.0'
-    PORT = 2025
+    PORT = 2004
     ThreadCount =0
     
     s = socket.socket()
     s.bind((HOST, PORT))
     s.listen(10)
-    print("......Waiting for a connection.....")
+    print("==================== Client is listening =================\n")
 
     def multi_client(connbuf):
         count = 0
@@ -24,32 +25,17 @@ def rec_agg_weights():
             file_name = os.path.join(clientname, file_name)
             print('file name: ', file_name)
             file_size = int(connbuf.get_utf8())
-            print('file size: ', file_size )
+            print('-------------Encrypted file size: ', file_size ,'\n')
 
-            with open(file_name, 'wb') as f:
-                remaining = file_size
-                while remaining:
-                    chunk_size = 4096 if remaining >= 4096 else remaining
-                    chunk = connbuf.get_bytes(chunk_size)
-                    if not chunk: break
-                    f.write(chunk)
-                    remaining -= len(chunk)
-                if remaining:
-                    print('File incomplete.  Missing',remaining,'bytes.')
-                else:
-                    print('File received successfully.')
-                    # count +=1
-                    # if count == 3:
-                    #     break
+            connbuf.secure_recv_file(file_size, file_name)
 
     while True:
         conn, addr = s.accept()
-        print("Got a connection from ", addr)
+        print("Got a connection from ", addr,'\n')
         connbuf = buffer.Buffer(conn)
+        connbuf.set_fernet(fernet)
         multi_client(connbuf)
-        print("Done receiving")
-        # conn.close()
+        print("Done receiving \n")
+        conn.close()
         time.sleep(15)
         break
-
-    # conn.close()
