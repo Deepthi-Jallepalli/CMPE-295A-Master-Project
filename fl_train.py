@@ -158,6 +158,7 @@ def train_client(comm_rounds):
              
         print("\n\ngiou_val_loss:{:7.2f}, conf_val_loss:{:7.2f}, prob_val_loss:{:7.2f}, total_val_loss:{:7.2f}\n\n".
               format(giou_val/count, conf_val/count, prob_val/count, total_val/count))
+        if not os.path.exists('mAP'): os.mkdir('mAP')
         with open("mAP/loss.txt", 'a') as results_file:
                 results_file.write("\n\ncomm_round:{:7.2f},giou_val_loss:{:7.2f}, conf_val_loss:{:7.2f}, prob_val_loss:{:7.2f}, total_val_loss:{:7.2f}\n\n".
               format(comm_rounds, giou_val/count,  conf_val/count, prob_val/count, total_val/count))
