@@ -29,7 +29,7 @@ The dataset consists of 7481 training images and 7518 test images. It consists o
 
 ## Data Conversion to YOLOv3 Format
 To run YOLO model with Darknet weights, KITTI labels need to be converted to YOLO format. A text file is generated which contains ground truth of the image in the following format:  
-&lt;object-class&gt; &lt;x&&gt; &lt;y&gt; &lt;width&gt; &lt;height&gt;  
+&lt;object-class&gt; &lt;x&gt; &lt;y&gt; &lt;width&gt; &lt;height&gt;  
 where x, y, width, and height are relative to the image's width and height.  
 &lt;object-class&gt; has the image path prepended to it.
   
