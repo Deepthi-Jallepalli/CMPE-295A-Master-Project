@@ -1,3 +1,9 @@
+#================================================================
+#
+#   File name   : fl_train.py
+#   Description : Base Yolo v3 object detection model and evaluation logic
+#
+#================================================================
 import os
 from sys import path
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'

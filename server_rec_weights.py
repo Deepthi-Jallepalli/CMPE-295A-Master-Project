@@ -1,3 +1,9 @@
+#================================================================
+#
+#   File name   : server_rec_weights.py
+#   Description : Socket Programming to receive weights from the client
+#
+#================================================================
 import socket
 import os
 from _thread import *

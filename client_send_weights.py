@@ -1,3 +1,9 @@
+#================================================================
+#
+#   File name   : client_send_weights.py
+#   Description : Socket Programming to send trained weights to the server
+#
+#================================================================
 import socket
 import threading
 import os

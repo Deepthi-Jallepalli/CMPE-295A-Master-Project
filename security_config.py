@@ -1,3 +1,9 @@
+#================================================================
+#
+#   File name   : security_config.py
+#   Description : config file for symmetric encryption and decryption
+#
+#================================================================
 import base64
 import os
 from cryptography.fernet import Fernet

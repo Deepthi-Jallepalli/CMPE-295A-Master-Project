@@ -1,3 +1,9 @@
+#================================================================
+#
+#   File name   : buffer.py
+#   Description : Performs read and write operation for weights transfer
+#
+#================================================================
 import security_config
 import os
 

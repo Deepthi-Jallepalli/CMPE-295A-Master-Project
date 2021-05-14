@@ -1,3 +1,9 @@
+#================================================================
+#
+#   File name   : voc_to_YOLOv3.py
+#   Description : converts dataset from voc to Yolov3 format
+#
+#================================================================
 import xml.etree.ElementTree as ET
 from os import getcwd
 import os

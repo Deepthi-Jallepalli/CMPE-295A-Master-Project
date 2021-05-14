@@ -1,3 +1,9 @@
+#================================================================
+#
+#   File name   : kitti_to_voc_xml.py
+#   Description : converts kitti dataset to xml format
+#
+#================================================================
 import os
 from tqdm import tqdm
 from sys import exit

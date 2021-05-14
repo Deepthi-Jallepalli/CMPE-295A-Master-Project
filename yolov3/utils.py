@@ -1,3 +1,9 @@
+#================================================================
+#
+#   File name   : utils.py
+#   Description : yolov3 functions
+#
+#================================================================
 from multiprocessing import Process, Queue, Pipe
 import cv2
 import time

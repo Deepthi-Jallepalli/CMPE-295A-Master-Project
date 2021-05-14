@@ -1,3 +1,9 @@
+#================================================================
+#
+#   File name   : oid_to_pascal_voc_xml.py
+#   Description : converts dataset from voc to xml format
+#
+#================================================================
 import os
 from tqdm import tqdm
 from sys import exit

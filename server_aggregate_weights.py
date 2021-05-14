@@ -1,3 +1,9 @@
+#================================================================
+#
+#   File name   : server_aggregation_weights.py
+#   Description : weights aggregation logic
+#
+#================================================================
 from multiprocessing import Process, Queue, Pipe
 import cv2
 import time

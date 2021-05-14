@@ -1,3 +1,9 @@
+#================================================================
+#
+#   File name   : data_split.py
+#   Description : Data split for four clients
+#
+#================================================================
 import sys
 import re
 import os

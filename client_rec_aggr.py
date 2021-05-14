@@ -1,3 +1,9 @@
+#================================================================
+#
+#   File name   : client_rec_aggr.py
+#   Description : Receives encrypted aggregated weights from the server
+#
+#================================================================
 import socket
 import os
 from _thread import *

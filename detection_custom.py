@@ -1,4 +1,9 @@
-
+# ================================================================
+#
+#   File name   : detection_custom.py
+#   Description : Performs object detection for images
+#
+#================================================================
 import os
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 import cv2

@@ -1,3 +1,10 @@
+
+#================================================================
+#
+#   File name   : dataset.py
+#   Description : Functions to preprocess the custom dataset
+#
+#================================================================
 import os
 import cv2
 import random

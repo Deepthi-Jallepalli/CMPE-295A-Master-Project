@@ -1,3 +1,9 @@
+#================================================================
+#
+#   File name   : evaluate_mAP.py
+#   Description : used to evaluate model mAP
+#
+#================================================================
 import os
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 import cv2
