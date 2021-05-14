@@ -66,7 +66,7 @@ where x, y, width, and height are relative to the image's width and height.
 |-----------------------------  |----------- |------  |---------- |------- |
 | Deep Learning                 | 6481       | 5   	  | 21.43     | 44.5%  |
 | Federated Learning (3 rounds) |	6481       | 5      | 26.26    	| 46.1%  |
-| Deep Learning                 | 6481       | 10     | 16.30	    | 16.3%  |
+| Deep Learning                 | 6481       | 10     | 16.30	    | 65.2%  |
 | Federated Learning (3 rounds) | 6481    	 | 10     | 8.5       | 63%    |
 
 ## Steps to Reproduce
